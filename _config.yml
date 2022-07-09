@@ -21,7 +21,7 @@ timezone: Europe/Amsterdam
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-#title: Ch1mp3y                          # the main title
+title: Welcome                         # the main title
 
 tagline: Hack all the things!   # it will display as the sub-title
 
@@ -86,7 +86,7 @@ img_cdn:
 avatar: '/assets/img/Chimpey_logo.png'
 
 # boolean type, the global switch for ToC in posts.
-toc: true
+toc: false
 
 comments:
   active:         # The global switch for posts comments, e.g., 'disqus'.  Keep it empty means disable
