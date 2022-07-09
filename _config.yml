@@ -21,7 +21,7 @@ timezone: Europe/Amsterdam
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Welcome                         # the main title
+title: C1mp3y                         # the main title
 
 tagline: Hack all the things!   # it will display as the sub-title
 
@@ -83,8 +83,7 @@ theme_mode: dark   # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-#avatar: 
-'/assets/img/Chimpey_logo.png'
+avatar: '/assets/img/RECOVER_Chimpey_vierkant2.png'
 
 # boolean type, the global switch for ToC in posts.
 toc: false
