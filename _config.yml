@@ -21,9 +21,9 @@ timezone: Europe/Amsterdam
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Chirpy                          # the main title
+#title: Ch1mp3y                          # the main title
 
-tagline: A text-focused Jekyll theme   # it will display as the sub-title
+tagline: Hack all the things!   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   A minimal, responsive, and powerful Jekyll theme for presenting professional writing.
@@ -83,7 +83,7 @@ theme_mode: dark   # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: '/assets/img/favicons/android-chrome-512x512.png'
 
 # boolean type, the global switch for ToC in posts.
 toc: true
