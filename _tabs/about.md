@@ -12,7 +12,7 @@ I started this blog because "my memory is leaking like a sieve" as we say in Dut
 
 So sit back and enjoy the ride with me, or slowly walk away, it is all good in the house of **Ch1mp3y**.
   
-**Mi casa es tu casa, perro mi taco es mi taco!**
+**Mi casa es tu casa, pero mi taco es mi taco!**
 
 
 ![Desktop View](/assets/img/Chimpey_logo.png){: width="600" height="527" }
