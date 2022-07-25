@@ -96,7 +96,7 @@ comments:
   # utterances settings › https://utteranc.es/
   utterances:
     repo: Ch1mp3y/ch1mp3y.github.io # <gh-username>/<repo>
-    issue_term: url   # < url | pathname | title | ...>
+    issue_term: title   # < url | pathname | title | ...>
   # Giscus options › https://giscus.app
   giscus:
     repo:             # <gh-username>/<repo>
