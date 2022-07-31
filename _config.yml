@@ -29,7 +29,7 @@ description: >-                        # used by seo meta and the atom feed
   A minimal, responsive, and powerful Jekyll theme for presenting professional writing.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
-url: 'https://ch1mp3y.github.io'
+url: 'http://chimpey.com' #'https://ch1mp3y.github.io'
 
 github:
   username: Ch1mp3y             # change to your github username
@@ -50,7 +50,7 @@ social:
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
 
-google_site_verification:               # fill in to your verification string
+google_site_verification: '7B-MyW0dy3yjVorlhotvBxXrK4v39i4p1OtKCIAUwJE' # fill in to your verification string
 
 # ↑ --------------------------
 # The end of `jekyll-seo-tag` settings
@@ -119,6 +119,9 @@ pwa:
   enabled: true   # the option for PWA feature
 
 paginate: 10
+
+plugins:
+  - jekyll-sitemap
 
 # ------------ The following options are not recommended to be modified ------------------
 
@@ -199,3 +202,4 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+  
