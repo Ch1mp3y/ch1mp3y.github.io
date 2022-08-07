@@ -11,14 +11,14 @@ tags: [websockets]
 ---
 
 ## Index 
-- [Intro]()
-- [What is a Websocket]()
-- [How to spot Websockets in the wild ]()
-- [Authentication ]()
-- [Input and output validation]()
-- [Cross-Site websocket hijacking]()
-- [Websocket DDOS]()
-- [Mitigations ]()
+- [Intro](https://ch1mp3y.github.io/posts/Websockets/#intro)
+- [What is a Websocket](https://ch1mp3y.github.io/posts/Websockets/#what-is-a-websocket)
+- [How to spot Websockets in the wild ](https://ch1mp3y.github.io/posts/Websockets/#how-to-spot-websockets-in-the-wild)
+- [Authentication ](https://ch1mp3y.github.io/posts/Websockets/#authentication)
+- [Input and output validation](https://ch1mp3y.github.io/posts/Websockets/#input-validation-and-output-encoding)
+- [Cross-Site websocket hijacking](https://ch1mp3y.github.io/posts/Websockets/#cross-site-websocket-hijacking)
+- [Websocket DDOS](https://ch1mp3y.github.io/posts/Websockets/#websocket-ddos)
+- [Mitigations ](https://ch1mp3y.github.io/posts/Websockets/#mitigations)
 
 
 ## Intro 
