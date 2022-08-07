@@ -50,7 +50,7 @@ How do you know the application is using a websocket? As seen in the picture abo
 We start with a HTTP handshake when creating the connection and after that we are telling the server "look man, I want to use the TCP connection for a different protocol" using the following headers:
 `Connection: Upgrade` and `Upgrade: websocket`
 
-<pre><code>
+```
 GET /chimpey HTTP/1.1
 Host: exploit-chimpey.com
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
@@ -66,38 +66,38 @@ Sec-Fetch-Mode: websocket
 Sec-Fetch-Site: same-origin
 Pragma: no-cache
 Cache-Control: no-cache
-<b>Upgrade: websocket</b>
-</code></pre>
+Upgrade: websocket
+```
 
 If the server supports websockets it will respond with something like the following:
-<pre><code> 
-<b>HTTP/1.1 101 Switching Protocol</b>
+```
+HTTP/1.1 101 Switching Protocol
 Connection: Upgrade
 Upgrade: websocket
 Sec-WebSocket-Accept: XKM8nFVMfy5LIGEW2nJClXyOWyI=
 Content-Length: 0
-</code></pre>
+```
 
 Another good indication that the application is using a websocket is the `Sec-Websocket-key` header. During 
 the websocket handshake the client gives a "Sec-WebSocket-Key" with a base64 encoded value:
-<pre><code>
+```
 GET /chimpey HTTP/1.1
 Host: exploit-chimpey.com
 [...]
 Sec-WebSocket-Version: 13
 Origin: https://exploit-chimpey.com
-<b>Sec-WebSocket-Key: 3oHQtmSHZ0A7pHWwRHUtkA==</b>
-</code></pre> 
+Sec-WebSocket-Key: 3oHQtmSHZ0A7pHWwRHUtkA==
+```
 
 Do note that this is not a session ID, cookie or CSRF-token.
 The server takes the `Sec-Websocket-key` value, does some magic with it and then returns the transformed value in the `Sec-websocket-accept` header:
-<pre><code>
+```
 HTTP/1.1 101 Switching Protocol
 Connection: Upgrade
 Upgrade: websocket
-<b>Sec-WebSocket-Accept: XKM8nFVMfy5LIGEW2nJClXyOWyI=</b>
+Sec-WebSocket-Accept: XKM8nFVMfy5LIGEW2nJClXyOWyI=
 Content-Length: 0
-</code></pre>
+```
 The header is sent from the server to the client to inform that the server is willing to start a websocket connection.
 
 
