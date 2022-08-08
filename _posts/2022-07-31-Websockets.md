@@ -29,9 +29,9 @@ Recently however, I encountered a website which used a websocket for EVERYTHING 
 But before we continue, let's talk about what a websocket actually is.
 
 ## What is a Websocket 
-A websocket is a networkprotocol. It's bascially a set of rules that determine how data is transmitted between different devices within the same network.
+A websocket is a network protocol. It's basically a set of rules that determine how data is transmitted between different devices within the same network.
 In the case of a websocket it's a full duplex & bidirectional communication protocol. This means it's a two way street. To make this more clear let's compare it 
-to the HTTP protocol. The HTTP protocol is a strictly undirectional protocol. This means that the server cannot respond on its own. You first need to send a request
+to the HTTP protocol. The HTTP protocol is a strictly unidirectional protocol. This means that the server cannot respond on its own. You first need to send a request
 in order to make the server send a response. With a websocket the server can respond without having to wait for a request from the client. This is possible because a 
 websocket connects to the server using HTTP as the initial transport mechanism, but then keeps
 the connection alive after the server sends the HTTP response, it basically creates a tunnel that stays open for sending messages between client and server.
