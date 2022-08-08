@@ -47,7 +47,7 @@ The protocol that the websocket uses is `WS://` or `WSS://`. `WS://` connects vi
 
 How do you know the application is using a websocket? As seen in the picture above, if the server supports websocket connections, it will respond with a `101 switching protocols` on an upgrade connection request.
 
-We start with a HTTP handshake when creating the connection and after that we are telling the server "look man, I want to use the TCP connection for a different protocol" using the following headers:
+We start with a HTTP handshake when creating the connection and after that we are telling the server we want to use the TCP connection for a different protocol using the following headers:
 `Connection: Upgrade` and `Upgrade: websocket`
 
 ```
@@ -111,7 +111,7 @@ Beyond the upgrade request, you are on your own.
 
 What usually happens is something like this:
 With the upgrade request the client sends some form of token: a cookie-value or a session token or something.
-The server then responds with 'hey man, here is your websocket connection'. After the connection is established no further checks on authentication are done. 
+The server then responds with the `101 switching protocols`. After the connection is established no further checks on authentication are done. 
 
 Everything you send via the websocket is generally free from any authentication tokens.
 
